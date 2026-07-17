@@ -15,27 +15,35 @@ export const reviewsConfig: ReviewsConfig = {
   testimonials: [
     {
       id: "testimonial-1",
-      name: "Robert K.",
-      role: "Type 2 Management Patient",
-      content: "The personalized coaching and continuous monitoring panel reversed my fasting glucose spikes within 3 months. Invaluable medical support.",
+      name: "Verified Patient",
+      role: "Diabetes & Thyroid Clinic Visitor",
+      content: "Doctor is very humble and listens carefully to patients.",
       rating: 5,
-      date: "2026-05-12"
+      date: "Verified Review"
     },
     {
       id: "testimonial-2",
-      name: "Clara M.",
-      role: "Gestational Care Patient",
-      content: "Highly professional team. The lab results were returned within 4 hours, and Dr. Vance immediately tuned my insulin ratios.",
+      name: "Verified Patient",
+      role: "Local Google Reviewer",
+      content: "Excellent doctor and pays attention to patients.",
       rating: 5,
-      date: "2026-06-20"
+      date: "Verified Review"
     },
     {
       id: "testimonial-3",
-      name: "David T.",
-      role: "Metabolic Coaching Client",
-      content: "Sarah's low-glycemic plans are actionable and easy to maintain. I've sustained a 12% weight reduction without feeling fatigued.",
+      name: "Verified Patient",
+      role: "Local Visitor",
+      content: "Affordable consultation. Highly recommended.",
       rating: 5,
-      date: "2026-07-02"
+      date: "Verified Review"
+    },
+    {
+      id: "testimonial-4",
+      name: "Verified Patient",
+      role: "Local resident",
+      content: "Trusted local diabetes specialist.",
+      rating: 5,
+      date: "Verified Review"
     }
   ]
 };

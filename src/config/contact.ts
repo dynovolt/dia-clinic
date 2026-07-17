@@ -17,11 +17,11 @@ export interface ContactConfig {
 }
 
 export const contactConfig: ContactConfig = {
-  phone: "+1 (800) 555-0199",
-  email: "appointments@dia-clinic.com",
-  address: "742 Medical Sciences Parkway, Suite 100, Boston, MA 02111",
-  mapUrl: "https://maps.google.com",
-  coordinates: { lat: 42.3501, lng: -71.0601 },
+  phone: "+91 63642 26888",
+  email: "info@dia-clinic-placeholder.com",
+  address: "2nd Main Rd, East of NGEF Layout, Kasturi Nagar, Bengaluru, Karnataka 560043 (Located In: Swaathi Medicals)",
+  mapUrl: "https://maps.google.com/?q=Dia+Speciality+Diabetes+Thyroid+Centre+Kasturi+Nagar+Bengaluru",
+  coordinates: { lat: 13.0116, lng: 77.6548 },
   socials: {
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",

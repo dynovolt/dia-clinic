@@ -22,20 +22,20 @@ export interface SEOConfig {
 }
 
 export const seoConfig: SEOConfig = {
-  title: "Dia-Clinic | Advanced Diabetes Care & Diagnostics",
-  description: "Pioneering diagnostics & personalized diabetes therapies. Explore our continuous glucose monitoring profiles, specialized endocrine panels, and clinical nutrition coaches.",
-  keywords: ["diabetes care", "endocrine diagnostics", "continuous glucose monitoring", "HbA1c tests", "metabolic coaching", "Boston diabetes clinic"],
-  author: "Dia-Clinic Specialist Team",
+  title: "Dia Speciality Diabetes & Thyroid Centre | Endocrinology & Diagnostics",
+  description: "Pioneering clinical endocrinology, advanced thyroid screening, and metabolic diabetes care. Explore continuous glucose profiling, HbA1c tests, and customized metabolic therapies.",
+  keywords: ["diabetes care", "endocrine diagnostics", "thyroid screening", "continuous glucose monitoring", "HbA1c tests", "metabolic coaching", "Boston diabetes clinic", "endocrinologist Boston"],
+  author: "Dia Speciality Team",
   openGraph: {
-    title: "Dia-Clinic | Advanced Diabetes Care & Diagnostics",
-    description: "Integrating advanced laboratory analytics with custom metabolic therapies.",
+    title: "Dia Speciality Diabetes & Thyroid Centre | Endocrinology & Diagnostics",
+    description: "Providing world-class endocrine diagnostics, advanced thyroid screenings, and customized metabolic therapies.",
     type: "website",
     locale: "en_US",
-    url: "https://dia-clinic.com"
+    url: "https://dia-centre.com"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dia-Clinic | Advanced Diabetes Care & Diagnostics",
-    description: "Precision diagnostics and customized treatment plans for metabolic longevity."
+    title: "Dia Speciality Diabetes & Thyroid Centre | Endocrinology & Diagnostics",
+    description: "Pioneering diagnostics & specialized treatment plans for metabolic and thyroid wellness."
   }
 };

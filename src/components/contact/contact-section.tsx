@@ -546,12 +546,12 @@ export function ContactSection() {
               <div className="absolute inset-0 bg-linear-gradient(to_bottom,transparent,rgba(0,0,0,0.05))" />
               <div className="relative z-10 space-y-3">
                 <MapPin className="w-8 h-8 text-primary mx-auto animate-bounce" />
-                <h4 className="text-sm font-bold text-foreground">Interactive Medical District Map</h4>
+                <h4 className="text-sm font-bold text-foreground">Interactive Clinic Map</h4>
                 <p className="text-xs text-muted-foreground max-w-xs mx-auto">
-                  Map View centered at Boston Medical Sciences quadrant (Latitude: {contactConfig.coordinates.lat}, Longitude: {contactConfig.coordinates.lng}).
+                  Map View centered at Kasturi Nagar, Bengaluru (Latitude: {contactConfig.coordinates.lat}, Longitude: {contactConfig.coordinates.lng}).
                 </p>
                 <a
-                  href={contactConfig.mapUrl}
+                  href="https://maps.google.com/?q=Dia+Speciality+Diabetes+Thyroid+Centre+Kasturi+Nagar+Bengaluru"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(

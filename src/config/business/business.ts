@@ -44,52 +44,47 @@ export interface BusinessConfig {
 }
 
 export const businessConfig: BusinessConfig = {
-  name: "Dia-Clinic",
-  shortName: "Dia-Clinic",
-  tagline: "Precision Diagnostics. Specialized Diabetes Care.",
-  description: "Integrating advanced laboratory analytics with custom metabolic therapies to empower your path to wellness.",
-  subTagline: "Integrating advanced laboratory analytics with custom metabolic therapies to empower your path to wellness.",
-  legalName: "Dia-Clinic Advanced Diabetes & Diagnostics Center LLC",
-  foundedYear: 2008,
-  address: "742 Medical Sciences Parkway, Suite 100, Boston, MA 02111",
-  phone: "+1 (800) 555-0199",
-  whatsApp: "https://wa.me/18005550199",
-  email: "appointments@dia-clinic.com",
-  googleRating: 4.9,
+  name: "Dia (Speciality Diabetes & Thyroid Centre)",
+  shortName: "Dia Centre",
+  tagline: "Pioneering Endocrinology, Diabetes Care, & Thyroid Diagnostics",
+  description: "Providing advanced diagnostics, thyroid panels, and customized metabolic care in Kasturi Nagar, Bengaluru. Located in Swaathi Medicals.",
+  subTagline: "Providing advanced diagnostics, thyroid panels, and customized metabolic care in Kasturi Nagar, Bengaluru. Located in Swaathi Medicals.",
+  legalName: "Dia (Speciality Diabetes & Thyroid Centre)",
+  foundedYear: 2018,
+  address: "2nd Main Rd, East of NGEF Layout, Kasturi Nagar, Bengaluru, Karnataka 560043 (Located In: Swaathi Medicals)",
+  phone: "+91 63642 26888",
+  whatsApp: "https://wa.me/916364226888",
+  email: "info@dia-clinic-placeholder.com",
+  googleRating: 5.0,
   location: {
-    lat: 42.3501,
-    lng: -71.0601
+    lat: 13.0116,
+    lng: 77.6548
   },
   openingHours: {
-    weekday: "Monday - Friday: 7:30 AM - 7:30 PM",
-    weekend: "Saturday: 8:00 AM - 4:00 PM",
-    sunday: "Sunday: Closed (Emergency Hotline Active)"
+    weekday: "Closed now - Opens 6:30 PM (Placeholder until verified)",
+    weekend: "Closed now - Opens 6:30 PM (Placeholder until verified)",
+    sunday: "Closed (Placeholder until verified)"
   },
   workingHours: {
-    weekday: "Monday - Friday: 7:30 AM - 7:30 PM",
-    weekend: "Saturday: 8:00 AM - 4:00 PM",
-    sunday: "Sunday: Closed (Emergency Hotline Active)"
+    weekday: "Closed now - Opens 6:30 PM (Placeholder until verified)",
+    weekend: "Closed now - Opens 6:30 PM (Placeholder until verified)",
+    sunday: "Closed (Placeholder until verified)"
   },
   stats: [
     {
-      value: "15,000+",
-      label: "Patients Guided",
-      description: "Successfully managing diabetes and metabolic health parameters."
+      value: "Years of Experience",
+      label: "Clinical Service",
+      description: "Trusted local diabetes & thyroid specialist centre in Bengaluru."
     },
     {
-      value: "99.8%",
-      label: "Diagnostic Accuracy",
-      description: "Certified state-of-the-art pathology and endocrine testing."
+      value: "Patients Treated",
+      label: "Metabolic Care",
+      description: "Personalized endocrine diagnostic treatment pathways."
     },
     {
-      value: "20+",
-      label: "Specialist Experts",
-      description: "Dedicated endocrinologists, nutritionists, and lab scientists."
-    },
-    {
-      value: "100%",
-      label: "Personalized Plans",
-      description: "Dynamic therapies tailored to your genomic and metabolic profile."
+      value: "Diabetes Programs",
+      label: "Targeted Panels",
+      description: "HbA1c tests, thyroid panels & glucose management."
     }
   ],
   socials: {
@@ -99,22 +94,10 @@ export const businessConfig: BusinessConfig = {
   },
   doctors: [
     {
-      id: "dr-elizabeth-vance",
-      name: "Dr. Elizabeth Vance, MD, PhD",
-      role: "Medical Director & Senior Endocrinologist",
-      specialty: "Advanced Endocrine Disorders & Diabetes Technology"
-    },
-    {
-      id: "dr-marcus-chen",
-      name: "Dr. Marcus Chen, MD",
-      role: "Lead Diabetologist & Clinical Researcher",
-      specialty: "Type 2 Diabetes Reversal & Cardiovascular Health"
-    },
-    {
-      id: "sarah-jenkins-rd",
-      name: "Sarah Jenkins, MS, RD, CDCES",
-      role: "Chief Diabetes Educator & Nutritionist",
-      specialty: "Nutritional Therapy & Behavioral Support"
+      id: "doctor-name",
+      name: "Doctor Name",
+      role: "Experienced Diabetes & Thyroid Specialist",
+      specialty: "Endocrinology, Thyroid Screenings & Diabetes Management"
     }
   ]
 };
