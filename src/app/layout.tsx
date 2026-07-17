@@ -15,15 +15,15 @@ const fontHeading = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-import { seoConfig } from "@/config/seo";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: seoConfig.title,
-  description: seoConfig.description,
-  keywords: seoConfig.keywords,
-  authors: [{ name: seoConfig.author }],
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
+  keywords: siteConfig.seo.keywords,
+  authors: [{ name: siteConfig.seo.author }],
   alternates: {
-    canonical: seoConfig.openGraph.url,
+    canonical: "https://dia-centre.com",
   },
   robots: {
     index: true,
@@ -37,17 +37,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: seoConfig.openGraph.title,
-    description: seoConfig.openGraph.description,
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
     type: "website",
-    locale: seoConfig.openGraph.locale,
-    url: seoConfig.openGraph.url,
-    siteName: "Dia-Clinic",
+    locale: "en_US",
+    url: "https://dia-centre.com",
+    siteName: siteConfig.business.name,
   },
   twitter: {
-    card: seoConfig.twitter.card,
-    title: seoConfig.twitter.title,
-    description: seoConfig.twitter.description,
+    card: "summary_large_image",
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
   },
 };
 

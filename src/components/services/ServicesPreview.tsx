@@ -1,8 +1,8 @@
 import { ArrowRight, Activity, FlaskConical, Stethoscope, Heart, Syringe, HeartPulse } from "lucide-react";
-import { servicesConfig } from "@/config/services";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/layout/SectionHeading";
+import { siteConfig } from "@/config/site";
 
 const iconMap = {
   "activity": Activity,
@@ -19,13 +19,13 @@ export function ServicesPreview() {
       <Container>
         <SectionHeading
           id="services-preview-heading"
-          title="Clinical Diagnostics & Specialized Care"
-          subtitle="Precision laboratory analytics mapped to custom treatment pathways for cardiometabolic wellness."
-          badge="Specialized Panel Services"
+          title={siteConfig.services.title}
+          subtitle={siteConfig.services.description}
+          badge={siteConfig.services.badge}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesConfig.services.map((service) => {
+          {siteConfig.services.items.map((service) => {
             // Find icon mapping
             const IconComp = iconMap[service.icon as keyof typeof iconMap] || Activity;
             return (

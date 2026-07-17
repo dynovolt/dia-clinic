@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Activity, Mail, Phone, MapPin, Clock } from "lucide-react";
-import { businessConfig } from "@/config/business/business";
-import { navigationConfig } from "@/config/navigation";
-import { contactConfig } from "@/config/contact";
+import { siteConfig } from "@/config/site";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,11 +17,11 @@ export function Footer() {
                 <Activity className="w-5 h-5" />
               </div>
               <span className="text-lg font-bold tracking-tight text-foreground font-heading">
-                {businessConfig.name}
+                {siteConfig.business.name}
               </span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              {businessConfig.description}
+              {siteConfig.footer.description}
             </p>
           </div>
 
@@ -35,27 +33,27 @@ export function Footer() {
             <ul className="space-y-3" role="list">
               <li className="flex items-start text-sm text-muted-foreground">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mr-3 mt-0.5" />
-                <span>{contactConfig.address}</span>
+                <span>{siteConfig.location.address}</span>
               </li>
               <li className="flex items-center text-sm text-muted-foreground">
                 <Phone className="w-5 h-5 text-primary shrink-0 mr-3" />
-                <a href={`tel:${contactConfig.phone}`} className="hover:text-foreground transition-colors">
-                  {contactConfig.phone}
+                <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-foreground transition-colors">
+                  {siteConfig.contact.phone}
                 </a>
               </li>
               <li className="flex items-center text-sm text-muted-foreground">
                 <Mail className="w-5 h-5 text-primary shrink-0 mr-3" />
-                <a href={`mailto:${contactConfig.email}`} className="hover:text-foreground transition-colors">
-                  {contactConfig.email}
+                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-foreground transition-colors">
+                  {siteConfig.contact.email}
                 </a>
               </li>
               <li className="flex items-start text-sm text-muted-foreground">
                 <Clock className="w-5 h-5 text-primary shrink-0 mr-3 mt-0.5" />
                 <div className="space-y-1">
                   <p className="font-medium text-foreground">Clinic Hours:</p>
-                  <p className="text-xs">{businessConfig.openingHours.weekday}</p>
-                  <p className="text-xs">{businessConfig.openingHours.weekend}</p>
-                  <p className="text-xs text-destructive/80 font-medium">{businessConfig.openingHours.sunday}</p>
+                  <p className="text-xs">{siteConfig.footer.openingHours.weekday}</p>
+                  <p className="text-xs">{siteConfig.footer.openingHours.weekend}</p>
+                  <p className="text-xs text-destructive/80 font-medium">{siteConfig.footer.openingHours.sunday}</p>
                 </div>
               </li>
             </ul>
@@ -67,7 +65,7 @@ export function Footer() {
               Quick Links
             </h3>
             <ul className="grid grid-cols-2 gap-2 text-sm text-muted-foreground" role="list">
-              {navigationConfig.footerLinks.map((link) => (
+              {siteConfig.footer.links.map((link) => (
                 <li key={link.name}>
                   <a href={link.href} className="hover:text-foreground transition-colors">
                     {link.name}
@@ -76,10 +74,10 @@ export function Footer() {
               ))}
               <li>
                 <a
-                  href={navigationConfig.ctaButton.href}
+                  href={siteConfig.navigation.ctaButton.href}
                   className="hover:text-foreground transition-colors font-medium text-primary"
                 >
-                  {navigationConfig.ctaButton.text}
+                  {siteConfig.navigation.ctaButton.name}
                 </a>
               </li>
             </ul>
@@ -89,7 +87,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            &copy; {currentYear} {businessConfig.name}. All rights reserved.
+            &copy; {currentYear} {siteConfig.business.name}. All rights reserved.
           </p>
           <div className="flex space-x-6 text-xs text-muted-foreground">
             <Link href="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>

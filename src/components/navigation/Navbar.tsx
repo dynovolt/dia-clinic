@@ -7,7 +7,7 @@ import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import { MobileMenu } from "./MobileMenu";
 import { buttonVariants } from "@/components/ui/button";
-import { navigationConfig } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -56,13 +56,13 @@ export function Navbar() {
             </button>
 
             <a
-              href={navigationConfig.ctaButton.href}
+              href={siteConfig.navigation.ctaButton.href}
               className={cn(
                 buttonVariants({ variant: "default", size: "sm" }),
                 "rounded-full shadow-sm hover:shadow-md transition-shadow"
               )}
             >
-              {navigationConfig.ctaButton.text}
+              {siteConfig.navigation.ctaButton.name}
             </a>
           </div>
 

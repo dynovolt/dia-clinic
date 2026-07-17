@@ -9,45 +9,37 @@ import { FAQPreview } from "@/components/faq";
 import { ContactSection, ContactCTA } from "@/components/contact";
 import { seoConfig } from "@/config/seo";
 
-import { businessConfig } from "@/config/business/business";
-import { contactConfig } from "@/config/contact";
-import { faqConfig } from "@/config/faq";
+import { siteConfig } from "@/config/site";
 
 export default function Home() {
   // 1. Schema.org MedicalClinic structured data
   const clinicJsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
-    "name": businessConfig.name,
-    "image": "https://dia-clinic.com/logo.png",
-    "@id": "https://dia-clinic.com/#clinic",
-    "url": "https://dia-clinic.com",
-    "telephone": contactConfig.phone,
+    "name": siteConfig.business.name,
+    "image": siteConfig.schema.logoUrl,
+    "@id": "https://dia-centre.com/#clinic",
+    "url": "https://dia-centre.com",
+    "telephone": siteConfig.contact.phone,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": contactConfig.address,
-      "addressLocality": "Boston",
-      "addressRegion": "MA",
-      "postalCode": "02111",
-      "addressCountry": "US"
+      "streetAddress": siteConfig.location.address,
+      "addressLocality": siteConfig.schema.addressLocality,
+      "addressRegion": siteConfig.schema.addressRegion,
+      "postalCode": siteConfig.schema.postalCode,
+      "addressCountry": siteConfig.schema.addressCountry
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": businessConfig.location.lat,
-      "longitude": businessConfig.location.lng
+      "latitude": siteConfig.location.coordinates.lat,
+      "longitude": siteConfig.location.coordinates.lng
     },
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:30",
-        "closes": "19:30"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday"],
-        "opens": "08:00",
-        "closes": "16:00"
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "18:30",
+        "closes": "21:00"
       }
     ]
   };
@@ -56,7 +48,7 @@ export default function Home() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqConfig.items.map((faq) => ({
+    "mainEntity": siteConfig.faq.items.map((faq) => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -75,13 +67,13 @@ export default function Home() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://dia-clinic.com"
+        "item": "https://dia-centre.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Clinical Diagnostics & Diabetes Care",
-        "item": "https://dia-clinic.com/#services"
+        "item": "https://dia-centre.com/#services"
       }
     ]
   };

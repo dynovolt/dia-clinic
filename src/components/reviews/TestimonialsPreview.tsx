@@ -3,7 +3,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/layout/SectionHeading";
-import { reviewsConfig } from "@/config/reviews";
+import { siteConfig } from "@/config/site";
 
 export function TestimonialsPreview() {
   return (
@@ -11,13 +11,13 @@ export function TestimonialsPreview() {
       <Container>
         <SectionHeading
           id="reviews-preview-heading"
-          title="Patient Success Stories & Testimonials"
-          subtitle="Real outcomes shared by patients undergoing metabolic care and diabetes control programs."
-          badge="Patient Reviews"
+          title={siteConfig.testimonials.title}
+          subtitle={siteConfig.testimonials.description}
+          badge={siteConfig.testimonials.badge}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {reviewsConfig.testimonials.map((review) => (
+          {siteConfig.testimonials.items.map((review) => (
             <Card key={review.id} className="border-border/70 bg-card/60 relative overflow-hidden group hover:border-primary/30 hover:shadow-md transition-all duration-300">
               <Quote className="absolute right-4 top-4 w-12 h-12 text-primary/5 group-hover:text-primary/10 transition-colors pointer-events-none" />
               <CardContent className="pt-6 pb-4">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Activity } from "lucide-react";
-import { businessConfig } from "@/config/business/business";
+import { siteConfig } from "@/config/site";
 
 export function Logo() {
   return (
@@ -12,7 +12,7 @@ export function Logo() {
         <Activity className="w-6 h-6 animate-pulse" />
       </div>
       <span className="text-xl font-bold tracking-tight text-foreground font-heading">
-        {businessConfig.name}
+        {siteConfig.branding.logoText}
       </span>
     </Link>
   );

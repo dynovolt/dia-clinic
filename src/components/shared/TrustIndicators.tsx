@@ -1,36 +1,24 @@
 import { Star, Shield, Users, Award } from "lucide-react";
-import { businessConfig } from "@/config/business/business";
+import { siteConfig } from "@/config/site";
+
+const iconMap = [Star, Award, Users, Shield];
 
 export function TrustIndicators() {
   const trustStats = [
     {
       id: "stat-rating",
       icon: Star,
-      value: `${businessConfig.googleRating} ★`,
+      value: `${siteConfig.contact.googleRating} ★`,
       label: "Google Rating",
-      desc: "Top rated healthcare diagnostic center"
+      desc: "Top rated local specialty center"
     },
-    {
-      id: "stat-exp",
-      icon: Award,
-      value: "18+ Years",
-      label: "Accredited Experts",
-      desc: "Clinical molecular research credentials"
-    },
-    {
-      id: "stat-patients",
-      icon: Users,
-      value: "15,000+",
-      label: "Patients Served",
-      desc: "Metabolic health metrics reversed"
-    },
-    {
-      id: "stat-care",
-      icon: Shield,
-      value: "Affordable Care",
-      label: "ADA Standards",
-      desc: "Full commercial insurance integrations"
-    }
+    ...siteConfig.business.stats.map((stat, idx) => ({
+      id: `stat-${idx}`,
+      icon: iconMap[(idx + 1) % iconMap.length],
+      value: stat.value,
+      label: stat.label,
+      desc: stat.description
+    }))
   ];
 
   return (

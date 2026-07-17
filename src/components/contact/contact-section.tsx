@@ -6,10 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
-import { contactConfig } from "@/config/contact";
-import { businessConfig } from "@/config/business/business";
-import { servicesConfig } from "@/config/services";
-import { doctorConfig } from "@/config/doctor";
+import { siteConfig } from "@/config/site";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -108,8 +105,8 @@ export function ContactSection() {
     toast.success("Appointment request received successfully!");
   };
 
-  const selectedService = servicesConfig.services.find((s) => s.id === selectedServiceId);
-  const selectedDoctor = doctorConfig.doctors.find((d) => d.id === selectedDoctorId);
+  const selectedService = siteConfig.services.items.find((s) => s.id === selectedServiceId);
+  const selectedDoctor = siteConfig.doctor.members.find((d) => d.id === selectedDoctorId);
 
   // Message Form State
   const [name, setName] = React.useState("");
@@ -311,7 +308,7 @@ export function ContactSection() {
                         className="w-full h-10 px-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                       >
                         <option value="">Select a service</option>
-                        {servicesConfig.services.map((service) => (
+                        {siteConfig.services.items.map((service) => (
                           <option key={service.id} value={service.id}>
                             {service.title} ({service.price})
                           </option>
@@ -328,7 +325,7 @@ export function ContactSection() {
                         className="w-full h-10 px-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                       >
                         <option value="">Select a doctor</option>
-                        {doctorConfig.doctors.map((doctor) => (
+                        {siteConfig.doctor.members.map((doctor) => (
                           <option key={doctor.id} value={doctor.id}>
                             {doctor.name} ({doctor.role})
                           </option>
@@ -493,7 +490,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Location</h4>
-                    <p className="text-sm text-foreground mt-1 font-medium">{contactConfig.address}</p>
+                    <p className="text-sm text-foreground mt-1 font-medium">{siteConfig.location.address}</p>
                   </div>
                 </li>
 
@@ -504,8 +501,8 @@ export function ContactSection() {
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Phone Support</h4>
                     <p className="text-sm text-foreground mt-1 font-medium">
-                      <a href={`tel:${contactConfig.phone}`} className="hover:underline">
-                        {contactConfig.phone}
+                      <a href={`tel:${siteConfig.contact.phone}`} className="hover:underline">
+                        {siteConfig.contact.phone}
                       </a>
                     </p>
                   </div>
@@ -518,8 +515,8 @@ export function ContactSection() {
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Email Communications</h4>
                     <p className="text-sm text-foreground mt-1 font-medium">
-                      <a href={`mailto:${contactConfig.email}`} className="hover:underline">
-                        {contactConfig.email}
+                      <a href={`mailto:${siteConfig.contact.email}`} className="hover:underline">
+                        {siteConfig.contact.email}
                       </a>
                     </p>
                   </div>
@@ -532,9 +529,9 @@ export function ContactSection() {
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Working Schedule</h4>
                     <div className="text-xs text-muted-foreground mt-1 space-y-0.5">
-                      <p>{businessConfig.workingHours.weekday}</p>
-                      <p>{businessConfig.workingHours.weekend}</p>
-                      <p className="text-destructive font-medium">{businessConfig.workingHours.sunday}</p>
+                      <p>{siteConfig.footer.openingHours.weekday}</p>
+                      <p>{siteConfig.footer.openingHours.weekend}</p>
+                      <p className="text-destructive font-medium">{siteConfig.footer.openingHours.sunday}</p>
                     </div>
                   </div>
                 </li>
@@ -548,10 +545,10 @@ export function ContactSection() {
                 <MapPin className="w-8 h-8 text-primary mx-auto animate-bounce" />
                 <h4 className="text-sm font-bold text-foreground">Interactive Clinic Map</h4>
                 <p className="text-xs text-muted-foreground max-w-xs mx-auto">
-                  Map View centered at Kasturi Nagar, Bengaluru (Latitude: {contactConfig.coordinates.lat}, Longitude: {contactConfig.coordinates.lng}).
+                  Map View centered at Kasturi Nagar, Bengaluru (Latitude: {siteConfig.location.coordinates.lat}, Longitude: {siteConfig.location.coordinates.lng}).
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Dia+Speciality+Diabetes+Thyroid+Centre+Kasturi+Nagar+Bengaluru"
+                  href={siteConfig.location.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(

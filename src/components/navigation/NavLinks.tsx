@@ -1,9 +1,9 @@
-import { navigationConfig } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
 
 export function NavLinks() {
   return (
     <nav className="flex items-center space-x-8" aria-label="Desktop navigation">
-      {navigationConfig.headerLinks.map((link) => (
+      {siteConfig.navigation.headerLinks.map((link) => (
         <a
           key={link.name}
           href={link.href}

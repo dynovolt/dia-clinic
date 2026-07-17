@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Menu, X } from "lucide-react";
-import { navigationConfig } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +27,7 @@ export function MobileMenu() {
           className="absolute top-16 left-0 right-0 bg-background border-b border-border p-4 space-y-3 shadow-md z-50 animate-in fade-in slide-in-from-top-5 duration-200"
           id="mobile-menu"
         >
-          {navigationConfig.headerLinks.map((link) => (
+          {siteConfig.navigation.headerLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
@@ -39,14 +39,14 @@ export function MobileMenu() {
           ))}
           <div className="pt-2">
             <a
-              href={navigationConfig.ctaButton.href}
+              href={siteConfig.navigation.ctaButton.href}
               onClick={() => setIsOpen(false)}
               className={cn(
                 buttonVariants({ variant: "default" }),
                 "w-full rounded-full"
               )}
             >
-              {navigationConfig.ctaButton.text}
+              {siteConfig.navigation.ctaButton.name}
             </a>
           </div>
         </div>

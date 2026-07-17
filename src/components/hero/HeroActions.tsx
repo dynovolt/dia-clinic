@@ -1,25 +1,24 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { businessConfig } from "@/config/business/business";
-import { navigationConfig } from "@/config/navigation";
 import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function HeroActions() {
   return (
     <div className="flex flex-col sm:flex-row items-center gap-4">
       <a
-        href={navigationConfig.ctaButton.href}
+        href={siteConfig.hero.ctaPrimary.href}
         className={cn(
           buttonVariants({ variant: "default", size: "lg" }),
           "rounded-full shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto px-8"
         )}
       >
-        {navigationConfig.ctaButton.text}
+        {siteConfig.hero.ctaPrimary.name}
         <ArrowRight className="w-5 h-5 ml-2" />
       </a>
       
       <a
-        href={businessConfig.whatsApp}
+        href={siteConfig.hero.ctaSecondary.href}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
@@ -28,7 +27,7 @@ export function HeroActions() {
         )}
       >
         <MessageCircle className="w-5 h-5 fill-current" />
-        <span>Chat on WhatsApp</span>
+        <span>{siteConfig.hero.ctaSecondary.name}</span>
       </a>
     </div>
   );

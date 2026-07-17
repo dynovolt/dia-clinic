@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { faqConfig } from "@/config/faq";
+import { siteConfig } from "@/config/site";
 
 export function FAQPreview() {
   return (
@@ -17,14 +17,14 @@ export function FAQPreview() {
       <Container>
         <SectionHeading
           id="faq-preview-heading"
-          title="Frequently Asked Questions"
-          subtitle="Answers to common queries about our endocrine consultation, screening, and treatment pathways."
-          badge="FAQ"
+          title={siteConfig.faq.title}
+          subtitle={siteConfig.faq.description}
+          badge={siteConfig.faq.badge}
         />
 
         <div className="max-w-3xl mx-auto bg-card border border-border/80 rounded-2xl p-6 sm:p-8 shadow-xs">
           <Accordion type="single" defaultValue="faq-item-0" collapsible>
-            {faqConfig.items.map((item, idx) => (
+            {siteConfig.faq.items.map((item, idx) => (
               <AccordionItem key={item.id} value={`faq-item-${idx}`} className="py-2.5">
                 <AccordionTrigger className="text-base font-bold text-foreground hover:text-primary font-heading">
                   {item.question}

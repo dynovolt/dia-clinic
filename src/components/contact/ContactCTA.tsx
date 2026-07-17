@@ -1,10 +1,8 @@
 import { Calendar, Phone, MessageCircle, MapPin, Compass } from "lucide-react";
-import { businessConfig } from "@/config/business/business";
-import { contactConfig } from "@/config/contact";
-import { navigationConfig } from "@/config/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function ContactCTA() {
@@ -22,35 +20,35 @@ export function ContactCTA() {
             Empower Your Path to Metabolic Wellness Today
           </h2>
           <p className="text-base sm:text-lg opacity-90 max-w-2xl mx-auto leading-relaxed">
-            Reserve your clinical consult, access specialized diagnostic panels, or get in touch with our diabetes educators.
+            Reserve your clinical consult, access specialized diagnostic panels, or get in touch with our specialist.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <a
-            href={navigationConfig.ctaButton.href}
+            href={siteConfig.navigation.ctaButton.href}
             className={cn(
               buttonVariants({ variant: "default", size: "lg" }),
               "rounded-full bg-white text-primary hover:bg-white/90 shadow-lg px-8 font-semibold"
             )}
           >
             <Calendar className="w-5 h-5 mr-2" />
-            <span>{navigationConfig.ctaButton.text}</span>
+            <span>{siteConfig.navigation.ctaButton.name}</span>
           </a>
 
           <a
-            href={`tel:${contactConfig.phone}`}
+            href={`tel:${siteConfig.contact.phone}`}
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
               "rounded-full border-white/30 hover:bg-white/10 px-8 text-white flex items-center justify-center gap-2"
             )}
           >
             <Phone className="w-5 h-5" />
-            <span>Call Clinic ({businessConfig.phone})</span>
+            <span>Call Clinic ({siteConfig.contact.phone})</span>
           </a>
 
           <a
-            href={businessConfig.whatsApp}
+            href={siteConfig.contact.whatsApp}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -68,9 +66,9 @@ export function ContactCTA() {
             <MapPin className="w-5 h-5 text-white shrink-0 mt-0.5" />
             <div>
               <h4 className="font-bold">Clinic Address</h4>
-              <p className="text-xs text-white/85 mt-1">{contactConfig.address}</p>
+              <p className="text-xs text-white/85 mt-1">{siteConfig.location.address}</p>
               <a
-                href={contactConfig.mapUrl}
+                href={siteConfig.location.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-xs underline mt-2 hover:opacity-80"
@@ -85,8 +83,8 @@ export function ContactCTA() {
             <Phone className="w-5 h-5 text-white shrink-0 mt-0.5" />
             <div>
               <h4 className="font-bold">Appointment Support</h4>
-              <p className="text-xs text-white/85 mt-1">General Inquiries: {contactConfig.email}</p>
-              <p className="text-xs text-white/85 mt-1">{businessConfig.openingHours.weekday}</p>
+              <p className="text-xs text-white/85 mt-1">General Inquiries: {siteConfig.contact.email}</p>
+              <p className="text-xs text-white/85 mt-1">{siteConfig.footer.openingHours.weekday}</p>
             </div>
           </div>
         </div>
