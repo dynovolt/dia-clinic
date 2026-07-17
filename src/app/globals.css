@@ -1,26 +1,186 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+
+  /* Centralized Core Color Palette */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Extra Brand Colors */
+  --color-brand-teal: oklch(0.52 0.14 195);
+  --color-brand-emerald: oklch(0.68 0.18 140);
+  --color-brand-sapphire: oklch(0.42 0.16 240);
+
+  /* Design System Radii */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.4);
+
+  /* Reusable Custom Shadows & Glows */
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  --shadow-glow-teal: 0 0 20px 0 rgba(20, 184, 166, 0.15);
+  --shadow-glow-emerald: 0 0 20px 0 rgba(16, 185, 129, 0.15);
+  --shadow-card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Light Mode Palette - Deep Medical Teals & Soft Slate */
+  --background: oklch(0.99 0.005 200);
+  --foreground: oklch(0.18 0.02 215);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 215);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 215);
+  
+  /* Primary teal accent */
+  --primary: oklch(0.38 0.12 195);
+  --primary-foreground: oklch(0.99 0.005 200);
+  
+  --secondary: oklch(0.95 0.01 195);
+  --secondary-foreground: oklch(0.38 0.12 195);
+  
+  --muted: oklch(0.96 0.008 200);
+  --muted-foreground: oklch(0.48 0.02 215);
+  
+  --accent: oklch(0.93 0.02 140); /* soft emerald tint */
+  --accent-foreground: oklch(0.24 0.1 140);
+  
+  --destructive: oklch(0.55 0.18 28);
+  --border: oklch(0.91 0.01 200);
+  --input: oklch(0.91 0.01 200);
+  --ring: oklch(0.38 0.12 195 / 0.5);
+  
+  --radius: 1rem;
+  
+  /* Font Family Mappings */
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Outfit", "Geist", sans-serif;
+}
+
+.dark {
+  /* Dark Mode Palette - Modern Futuristic Deep Dark Blue-Greens */
+  --background: oklch(0.13 0.015 210);
+  --foreground: oklch(0.94 0.01 200);
+  --card: oklch(0.16 0.02 210);
+  --card-foreground: oklch(0.94 0.01 200);
+  --popover: oklch(0.16 0.02 210);
+  --popover-foreground: oklch(0.94 0.01 200);
+  
+  --primary: oklch(0.64 0.14 195);
+  --primary-foreground: oklch(0.13 0.015 210);
+  
+  --secondary: oklch(0.22 0.025 210);
+  --secondary-foreground: oklch(0.64 0.14 195);
+  
+  --muted: oklch(0.20 0.02 210);
+  --muted-foreground: oklch(0.68 0.02 200);
+  
+  --accent: oklch(0.24 0.06 140); /* dark emerald tint */
+  --accent-foreground: oklch(0.72 0.12 140);
+  
+  --destructive: oklch(0.62 0.18 28);
+  --border: oklch(0.24 0.02 210);
+  --input: oklch(0.24 0.02 210);
+  --ring: oklch(0.64 0.14 195 / 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  
+  html {
+    @apply scroll-smooth;
+    font-family: var(--font-sans);
+  }
+  
+  body {
+    @apply bg-background text-foreground min-h-full antialiased selection:bg-primary/20 selection:text-primary;
+  }
+
+  /* Typography Design Tokens */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply font-bold tracking-tight text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Award-Winning Reusable Containers & Sections */
+  .design-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+  }
+
+  .design-section {
+    @apply py-20 lg:py-28 relative overflow-hidden;
+  }
+
+  .design-section-muted {
+    @apply py-20 lg:py-28 relative overflow-hidden bg-muted/40 border-y border-border;
+  }
+
+  /* Glassmorphism and Backdrop Blurs */
+  .glass-card {
+    @apply bg-card/75 backdrop-blur-md border border-border shadow-glass;
+  }
+
+  .glass-card-hover {
+    @apply hover:bg-card hover:shadow-card-hover hover:border-primary/30 transition-all duration-300;
+  }
+
+  /* Reusable Button Custom Class Variants (Tailwind variables-driven) */
+  .btn-base {
+    @apply inline-flex items-center justify-center font-semibold text-sm rounded-full transition-all duration-300 outline-none select-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply btn-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-glow-teal active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-secondary text-secondary-foreground hover:bg-secondary/85 active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply btn-base border border-border bg-background hover:bg-muted text-foreground active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply btn-base text-muted-foreground hover:text-foreground hover:bg-muted/60;
+  }
+
+  .btn-sm {
+    @apply px-4 py-1.5 text-xs;
+  }
+
+  .btn-md {
+    @apply px-6 py-2.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-3.5 text-base;
+  }
 }

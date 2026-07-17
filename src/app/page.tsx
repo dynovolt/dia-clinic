@@ -1,65 +1,123 @@
-import Image from "next/image";
+import { PageLayout } from "@/components/layout";
+import { HeroSection } from "@/components/hero";
+import { TrustSection, WhyChooseUs } from "@/components/shared";
+import { ServicesSection } from "@/components/services";
+import { AboutSection } from "@/components/about";
+import { GallerySection } from "@/components/gallery";
+import { ReviewsSection } from "@/components/reviews";
+import { FAQSection } from "@/components/faq";
+import { ContactSection } from "@/components/contact";
+import { seoConfig } from "@/config/seo";
+
+import { businessConfig } from "@/config/business";
+import { contactConfig } from "@/config/contact";
+import { faqConfig } from "@/config/faq";
 
 export default function Home() {
+  // 1. Schema.org MedicalClinic structured data
+  const clinicJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": businessConfig.name,
+    "image": "https://dia-clinic.com/logo.png",
+    "@id": "https://dia-clinic.com/#clinic",
+    "url": "https://dia-clinic.com",
+    "telephone": contactConfig.phone,
+    "email": contactConfig.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": contactConfig.address.split(",")[0],
+      "addressLocality": "Boston",
+      "addressRegion": "MA",
+      "postalCode": "02111",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": contactConfig.coordinates.lat,
+      "longitude": contactConfig.coordinates.lng
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "07:30",
+        "closes": "19:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "16:00"
+      }
+    ],
+    "medicalSpecialty": [
+      "Endocrinology",
+      "DiagnosticLab"
+    ]
+  };
+
+  // 2. Schema.org FAQPage structured data
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqConfig.items.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
+  // 3. Schema.org BreadcrumbList structured data
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://dia-clinic.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Clinical Diagnostics & Diabetes Care",
+        "item": "https://dia-clinic.com/#services"
+      }
+    ]
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      
+      <PageLayout>
+        <HeroSection />
+        <TrustSection />
+        <ServicesSection />
+        <AboutSection />
+        <WhyChooseUs />
+        <GallerySection />
+        <ReviewsSection />
+        <FAQSection />
+        <ContactSection />
+      </PageLayout>
+    </>
   );
 }

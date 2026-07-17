@@ -1,0 +1,2 @@
+// Export business configurations
+export {};

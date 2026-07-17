@@ -1,0 +1,2 @@
+// Export metadata configurations
+export {};
