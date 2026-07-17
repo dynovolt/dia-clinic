@@ -10,7 +10,7 @@ import { contactConfig } from "@/config/contact";
 import { businessConfig } from "@/config/business";
 import { servicesConfig } from "@/config/services";
 import { doctorConfig } from "@/config/doctor";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Container } from "@/components/shared/container";
