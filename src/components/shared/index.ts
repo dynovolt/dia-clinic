@@ -5,3 +5,6 @@ export * from "./why-choose-us";
 export * from "./section-heading";
 export * from "./max-width";
 export * from "./stack";
+export * from "./TrustIndicators";
+export * from "./WhyChooseUs";
+export * from "./StatsSection";

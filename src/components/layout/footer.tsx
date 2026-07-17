@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Activity, Mail, Phone, MapPin, Clock } from "lucide-react";
-import { businessConfig } from "@/config/business";
+import { businessConfig } from "@/config/business/business";
 import { navigationConfig } from "@/config/navigation";
 import { contactConfig } from "@/config/contact";
 

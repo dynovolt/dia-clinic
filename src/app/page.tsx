@@ -1,15 +1,15 @@
 import { PageLayout } from "@/components/layout";
-import { HeroSection } from "@/components/hero";
-import { TrustSection, WhyChooseUs } from "@/components/shared";
-import { ServicesSection } from "@/components/services";
-import { AboutSection } from "@/components/about";
-import { GallerySection } from "@/components/gallery";
-import { ReviewsSection } from "@/components/reviews";
-import { FAQSection } from "@/components/faq";
-import { ContactSection } from "@/components/contact";
+import { Hero } from "@/components/hero";
+import { WhyChooseUs, StatsSection } from "@/components/shared";
+import { ServicesPreview } from "@/components/services";
+import { AboutPreview } from "@/components/about";
+import { GalleryPreview } from "@/components/gallery";
+import { TestimonialsPreview } from "@/components/reviews";
+import { FAQPreview } from "@/components/faq";
+import { ContactSection, ContactCTA } from "@/components/contact";
 import { seoConfig } from "@/config/seo";
 
-import { businessConfig } from "@/config/business";
+import { businessConfig } from "@/config/business/business";
 import { contactConfig } from "@/config/contact";
 import { faqConfig } from "@/config/faq";
 
@@ -23,10 +23,9 @@ export default function Home() {
     "@id": "https://dia-clinic.com/#clinic",
     "url": "https://dia-clinic.com",
     "telephone": contactConfig.phone,
-    "email": contactConfig.email,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": contactConfig.address.split(",")[0],
+      "streetAddress": contactConfig.address,
       "addressLocality": "Boston",
       "addressRegion": "MA",
       "postalCode": "02111",
@@ -34,8 +33,8 @@ export default function Home() {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": contactConfig.coordinates.lat,
-      "longitude": contactConfig.coordinates.lng
+      "latitude": businessConfig.location.lat,
+      "longitude": businessConfig.location.lng
     },
     "openingHoursSpecification": [
       {
@@ -46,14 +45,10 @@ export default function Home() {
       },
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
+        "dayOfWeek": ["Saturday"],
         "opens": "08:00",
         "closes": "16:00"
       }
-    ],
-    "medicalSpecialty": [
-      "Endocrinology",
-      "DiagnosticLab"
     ]
   };
 
@@ -106,17 +101,18 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      
+
       <PageLayout>
-        <HeroSection />
-        <TrustSection />
-        <ServicesSection />
-        <AboutSection />
+        <Hero />
+        <ServicesPreview />
+        <AboutPreview />
         <WhyChooseUs />
-        <GallerySection />
-        <ReviewsSection />
-        <FAQSection />
+        <StatsSection />
+        <GalleryPreview />
+        <TestimonialsPreview />
+        <FAQPreview />
         <ContactSection />
+        <ContactCTA />
       </PageLayout>
     </>
   );

@@ -1,2 +1,1 @@
-// Export business configurations
-export {};
+export * from "./business";

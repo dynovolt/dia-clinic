@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import { Menu, X, Activity, Sun, Moon } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { navigationConfig } from "@/config/navigation";
-import { businessConfig } from "@/config/business";
+import { businessConfig } from "@/config/business/business";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {

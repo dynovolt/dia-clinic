@@ -3,6 +3,9 @@ export interface BusinessConfig {
   shortName: string;
   tagline: string;
   description: string;
+  subTagline: string;
+  legalName: string;
+  foundedYear: number;
   address: string;
   phone: string;
   whatsApp: string;
@@ -17,6 +20,16 @@ export interface BusinessConfig {
     weekend: string;
     sunday: string;
   };
+  workingHours: {
+    weekday: string;
+    weekend: string;
+    sunday: string;
+  };
+  stats: {
+    value: string;
+    label: string;
+    description: string;
+  }[];
   socials: {
     linkedin?: string;
     twitter?: string;
@@ -35,6 +48,9 @@ export const businessConfig: BusinessConfig = {
   shortName: "Dia-Clinic",
   tagline: "Precision Diagnostics. Specialized Diabetes Care.",
   description: "Integrating advanced laboratory analytics with custom metabolic therapies to empower your path to wellness.",
+  subTagline: "Integrating advanced laboratory analytics with custom metabolic therapies to empower your path to wellness.",
+  legalName: "Dia-Clinic Advanced Diabetes & Diagnostics Center LLC",
+  foundedYear: 2008,
   address: "742 Medical Sciences Parkway, Suite 100, Boston, MA 02111",
   phone: "+1 (800) 555-0199",
   whatsApp: "https://wa.me/18005550199",
@@ -49,6 +65,33 @@ export const businessConfig: BusinessConfig = {
     weekend: "Saturday: 8:00 AM - 4:00 PM",
     sunday: "Sunday: Closed (Emergency Hotline Active)"
   },
+  workingHours: {
+    weekday: "Monday - Friday: 7:30 AM - 7:30 PM",
+    weekend: "Saturday: 8:00 AM - 4:00 PM",
+    sunday: "Sunday: Closed (Emergency Hotline Active)"
+  },
+  stats: [
+    {
+      value: "15,000+",
+      label: "Patients Guided",
+      description: "Successfully managing diabetes and metabolic health parameters."
+    },
+    {
+      value: "99.8%",
+      label: "Diagnostic Accuracy",
+      description: "Certified state-of-the-art pathology and endocrine testing."
+    },
+    {
+      value: "20+",
+      label: "Specialist Experts",
+      description: "Dedicated endocrinologists, nutritionists, and lab scientists."
+    },
+    {
+      value: "100%",
+      label: "Personalized Plans",
+      description: "Dynamic therapies tailored to your genomic and metabolic profile."
+    }
+  ],
   socials: {
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",

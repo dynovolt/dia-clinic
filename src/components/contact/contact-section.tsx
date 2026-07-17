@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { contactConfig } from "@/config/contact";
-import { businessConfig } from "@/config/business";
+import { businessConfig } from "@/config/business/business";
 import { servicesConfig } from "@/config/services";
 import { doctorConfig } from "@/config/doctor";
 import { Button, buttonVariants } from "@/components/ui/button";
