@@ -27,7 +27,7 @@ export function TestimonialsPreview() {
                   ))}
                 </div>
                 <p className="text-sm sm:text-base text-foreground leading-relaxed italic">
-                  "{review.content}"
+                  &ldquo;{review.content}&rdquo;
                 </p>
               </CardContent>
               <CardHeader className="border-t border-border/50 bg-card/50 py-4 flex flex-row items-center space-x-3">

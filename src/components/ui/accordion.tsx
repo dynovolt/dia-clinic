@@ -1,73 +1,156 @@
-import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
+"use client";
 
-import { cn } from "@/lib/utils"
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { ChevronDownIcon } from "lucide-react";
 
-function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
-  const { collapsible, ...rest } = props as AccordionPrimitive.Root.Props & { collapsible?: boolean };
-  return (
-    <AccordionPrimitive.Root
-      data-slot="accordion"
-      className={cn("flex w-full flex-col", className)}
-      {...rest}
-    />
-  )
+interface AccordionContextType {
+  value?: string | string[];
+  type?: "single" | "multiple";
+  collapsible?: boolean;
+  onItemSelect: (itemValue: string) => void;
+  isItemOpen: (itemValue: string) => boolean;
 }
 
-function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
-  return (
-    <AccordionPrimitive.Item
-      data-slot="accordion-item"
-      className={cn("not-last:border-b", className)}
-      {...props}
-    />
-  )
+const AccordionContext = React.createContext<AccordionContextType | null>(null);
+
+interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+  type: "single" | "multiple";
+  defaultValue?: string | string[];
+  value?: string | string[];
+  onValueChange?: (value: any) => void;
+  collapsible?: boolean;
 }
 
-function AccordionTrigger({
+export function Accordion({
+  type = "single",
+  defaultValue,
+  value: controlledValue,
+  onValueChange,
+  collapsible = false,
   className,
   children,
   ...props
-}: AccordionPrimitive.Trigger.Props) {
-  return (
-    <AccordionPrimitive.Header className="flex">
-      <AccordionPrimitive.Trigger
-        data-slot="accordion-trigger"
-        className={cn(
-          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
-          className
-        )}
-        {...props}
-      >
-        {children}
-        <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
-        <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
-      </AccordionPrimitive.Trigger>
-    </AccordionPrimitive.Header>
-  )
-}
+}: AccordionProps) {
+  const [localValue, setLocalValue] = React.useState<string | string[]>(() => {
+    return defaultValue ?? (type === "multiple" ? [] : "");
+  });
 
-function AccordionContent({
-  className,
-  children,
-  ...props
-}: AccordionPrimitive.Panel.Props) {
+  const value = controlledValue !== undefined ? controlledValue : localValue;
+
+  const onItemSelect = React.useCallback(
+    (itemValue: string) => {
+      let newValue: string | string[];
+      if (type === "single") {
+        if (value === itemValue) {
+          newValue = collapsible ? "" : itemValue;
+        } else {
+          newValue = itemValue;
+        }
+      } else {
+        const currentValues = Array.isArray(value) ? value : [];
+        if (currentValues.includes(itemValue)) {
+          newValue = currentValues.filter((v) => v !== itemValue);
+        } else {
+          newValue = [...currentValues, itemValue];
+        }
+      }
+
+      if (controlledValue === undefined) {
+        setLocalValue(newValue);
+      }
+      onValueChange?.(newValue);
+    },
+    [type, value, collapsible, controlledValue, onValueChange]
+  );
+
+  const isItemOpen = React.useCallback(
+    (itemValue: string) => {
+      if (type === "single") {
+        return value === itemValue;
+      }
+      return Array.isArray(value) ? value.includes(itemValue) : false;
+    },
+    [type, value]
+  );
+
   return (
-    <AccordionPrimitive.Panel
-      data-slot="accordion-content"
-      className="overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up"
-      {...props}
-    >
-      <div
-        className={cn(
-          "h-(--accordion-panel-height) pt-0 pb-2.5 data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
-          className
-        )}
-      >
+    <AccordionContext.Provider value={{ value, type, collapsible, onItemSelect, isItemOpen }}>
+      <div className={cn("flex w-full flex-col", className)} {...props}>
         {children}
       </div>
-    </AccordionPrimitive.Panel>
-  )
+    </AccordionContext.Provider>
+  );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: string;
+}
+
+const AccordionItemContext = React.createContext<string | null>(null);
+
+export function AccordionItem({ value, className, children, ...props }: AccordionItemProps) {
+  return (
+    <AccordionItemContext.Provider value={value}>
+      <div className={cn("border-b border-border/60 py-2", className)} {...props}>
+        {children}
+      </div>
+    </AccordionItemContext.Provider>
+  );
+}
+
+interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function AccordionTrigger({ className, children, ...props }: AccordionTriggerProps) {
+  const context = React.useContext(AccordionContext);
+  const itemValue = React.useContext(AccordionItemContext);
+
+  if (!context || !itemValue) {
+    throw new Error("AccordionTrigger must be used within AccordionItem");
+  }
+
+  const isOpen = context.isItemOpen(itemValue);
+
+  return (
+    <button
+      type="button"
+      onClick={() => context.onItemSelect(itemValue)}
+      aria-expanded={isOpen}
+      className={cn(
+        "flex flex-1 items-center justify-between py-4 text-left font-medium transition-all hover:underline [&[aria-expanded=true]>svg]:rotate-180 cursor-pointer w-full",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
+    </button>
+  );
+}
+
+interface AccordionContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export function AccordionContent({ className, children, ...props }: AccordionContentProps) {
+  const context = React.useContext(AccordionContext);
+  const itemValue = React.useContext(AccordionItemContext);
+
+  if (!context || !itemValue) {
+    throw new Error("AccordionContent must be used within AccordionItem");
+  }
+
+  const isOpen = context.isItemOpen(itemValue);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className={cn(
+        "overflow-hidden text-sm transition-all pb-4 pt-0 text-muted-foreground animate-in fade-in slide-in-from-top-1 duration-200",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
